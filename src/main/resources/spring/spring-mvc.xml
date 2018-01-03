@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <context:component-scan base-package="com.oiulkjasdf.investigate.zwproject"/>
+    
+    <context:annotation-config/>
+    <mvc:default-servlet-handler/>
+    
+<!-- 	css等标签样式 -->
+	<bean id="themeResolver" class="org.springframework.web.servlet.theme.SessionThemeResolver">  
+    <property name="defaultThemeName" value="grey" />  
+	</bean> 
+    
+<!--     URL映射为逻辑视图名 -->
+    <bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">  
+	   <property name="prefix" value="prefix"/>  
+	   <property name="suffix" value="suffix"/>  
+	</bean>  
+	
+<!-- 	管理FlashMap的策略接口 -->
+    <bean id="flashMapManager" class="org.springframework.web.servlet.support.SessionFlashMapManager">  
+	   <property name="flashMapTimeout" value="180"/>  
+	</bean>  
+	
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property value="/WEB-INF/" name="prefix"/>
+		<property value=".jsp" name="suffix"/>
+	</bean>
+</beans>
