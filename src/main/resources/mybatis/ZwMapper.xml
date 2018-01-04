@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oiulkjasdf.investigate.zwproject.dao.ZwDao">
+  <resultMap id="BaseResultMap" type="com.oiulkjasdf.investigate.zwproject.entity.Zw">
+    <id column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="answertime" jdbcType="TIMESTAMP" property="answertime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tel, answer, name, address, answertime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zw
+    where tel = #{tel,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zw
+    where tel = #{tel,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oiulkjasdf.investigate.zwproject.entity.Zw">
+    insert into zw (tel, answer, name, 
+      address, answertime)
+    values (#{tel,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{answertime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oiulkjasdf.investigate.zwproject.entity.Zw">
+    insert into zw
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="answertime != null">
+        answertime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="answertime != null">
+        #{answertime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oiulkjasdf.investigate.zwproject.entity.Zw">
+    update zw
+    <set>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="answertime != null">
+        answertime = #{answertime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where tel = #{tel,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oiulkjasdf.investigate.zwproject.entity.Zw">
+    update zw
+    set answer = #{answer,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      answertime = #{answertime,jdbcType=TIMESTAMP}
+    where tel = #{tel,jdbcType=VARCHAR}
+  </update>
+</mapper>
